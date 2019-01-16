@@ -18,7 +18,7 @@ All together now: A shortcut for @ToString,
 @EqualsAndHashCode, @Getter on all fields,
 and @Setter on all non-final fields, and @RequiredArgsConstructor!
 */
-public class Link {
+public class Link extends Auditable{
 
     @Id
     @GeneratedValue

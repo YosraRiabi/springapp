@@ -17,7 +17,7 @@ All together now: A shortcut for @ToString,
 @EqualsAndHashCode, @Getter on all fields,
 and @Setter on all non-final fields, and @RequiredArgsConstructor!
 */
-public class Comment {
+public class Comment extends Auditable{
 
 
     @Id
