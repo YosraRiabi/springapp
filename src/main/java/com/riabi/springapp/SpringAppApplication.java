@@ -26,20 +26,8 @@ public class SpringAppApplication {
 
     }
 
-    @Bean
-    CommandLineRunner runner (LinkRepository linkRepository, CommentRepository commentRepository){
-        return args -> {
-            Link link = new Link("Spring boot 2", "lien");
-            linkRepository.save(link);
-            Comment comment = new Comment("spring boot tutorial",link);
-            commentRepository.save(comment);
-            link.addComment(comment);
-            System.out.println("We just insert a Link and a Comment");
-            System.out.println("***********************************");
-
-        };
-
-    }
+    //@Bean
+   // CommandLineRunner runner (LinkRepository linkRepository, CommentRepository commentRepository){...}
 
 
 }
