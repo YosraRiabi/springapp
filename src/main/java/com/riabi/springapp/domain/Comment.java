@@ -1,35 +1,33 @@
 package com.riabi.springapp.domain;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 @Entity
-@NoArgsConstructor/*
-Generates constructors that take no arguments
-*/
-@Data /*
-All together now: A shortcut for @ToString,
-@EqualsAndHashCode, @Getter on all fields,
-and @Setter on all non-final fields, and @RequiredArgsConstructor!
-*/
-public class Comment extends Auditable{
 
+@Getter
+@Setter
+@NoArgsConstructor
+public class Comment extends Auditable {
 
     @Id
     @GeneratedValue
     private Long id;
+
+    @NonNull
     private String body;
 
-    //Link
-
     @ManyToOne
+    @NonNull
     private Link link;
 
-
-
+    public Comment( String body, Link link) {
+        this.body = body;
+        this.link = link;
+    }
 }
