@@ -5,6 +5,7 @@ import com.riabi.springapp.domain.Comment;
 import com.riabi.springapp.domain.Link;
 import com.riabi.springapp.repository.CommentRepository;
 import com.riabi.springapp.repository.LinkRepository;
+import org.ocpsoft.prettytime.PrettyTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -26,8 +27,10 @@ public class SpringAppApplication {
 
     }
 
-    //@Bean
-   // CommandLineRunner runner (LinkRepository linkRepository, CommentRepository commentRepository){...}
+   @Bean
+    PrettyTime prettyTime(){
+        return new PrettyTime();
+   }
 
 
 }
