@@ -17,7 +17,7 @@ import sun.security.x509.X500Name;
 
 
 @SpringBootApplication
-@EnableJpaAuditing
+
 public class SpringAppApplication {
 
     private static final Logger log = LoggerFactory.getLogger(SpringAppApplication.class);
