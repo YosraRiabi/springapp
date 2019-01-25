@@ -44,6 +44,8 @@ public class Link extends Auditable{
     public Link() {
     }
 
+
+
     //Comment
 
     @OneToMany(mappedBy = "link")
@@ -59,6 +61,27 @@ public class Link extends Auditable{
 
     public void addComment(Comment comment) {
         comments.add(comment);
+    }
+
+    @OneToMany(mappedBy = "link")
+    private List<Vote> votes = new ArrayList<>();
+
+    private int voteCount = 0;
+
+    public List<Vote> getVotes() {
+        return votes;
+    }
+
+    public void setVotes(List<Vote> votes) {
+        this.votes = votes;
+    }
+
+    public int getVoteCount() {
+        return voteCount;
+    }
+
+    public void setVoteCount(int voteCount) {
+        this.voteCount = voteCount;
     }
 
     public Long getId() {
