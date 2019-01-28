@@ -4,6 +4,7 @@ import com.riabi.springapp.domain.Link;
 import com.riabi.springapp.domain.Vote;
 import com.riabi.springapp.repository.LinkRepository;
 import com.riabi.springapp.repository.VoteRepository;
+import com.riabi.springapp.service.VoteService;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,11 +15,11 @@ import java.util.Optional;
 @RestController
 public class VoteController {
 
-    private VoteRepository voteRepository;
+    private VoteService voteService;
     private LinkRepository linkRepository;
 
-    public VoteController(VoteRepository voteRepository, LinkRepository linkRepository) {
-        this.voteRepository = voteRepository;
+    public VoteController(VoteService voteService, LinkRepository linkRepository) {
+        this.voteService = voteService;
         this.linkRepository = linkRepository;
     }
 
@@ -31,7 +32,7 @@ public class VoteController {
         if (optionalLink.isPresent()) {
             Link link = optionalLink.get();
             Vote vote = new Vote(direction, link);
-            voteRepository.save(vote);
+            voteService.save(vote);
 
             int updatedVoteCount = voteCount + direction;
             link.setVoteCount(updatedVoteCount);
