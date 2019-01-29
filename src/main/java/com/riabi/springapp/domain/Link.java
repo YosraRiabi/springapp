@@ -5,10 +5,7 @@ import lombok.*;
 import org.hibernate.validator.constraints.URL;
 import org.ocpsoft.prettytime.PrettyTime;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -19,13 +16,9 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-
+@RequiredArgsConstructor
 @Getter @Setter
-/*@NoArgsConstructor
-All together now: A shortcut for @ToString,
-@EqualsAndHashCode, @Getter on all fields,
-and @Setter on all non-final fields, and @RequiredArgsConstructor!
-*/
+@NoArgsConstructor
 public class Link extends Auditable{
 
     @Id
@@ -40,10 +33,6 @@ public class Link extends Auditable{
     @NotEmpty(message = "Please enter a url.")
     @URL(message = "Please enter a valid url.")
     private String url;
-
-    public Link() {
-    }
-
 
 
     //Comment
@@ -68,50 +57,9 @@ public class Link extends Auditable{
 
     private int voteCount = 0;
 
-    public List<Vote> getVotes() {
-        return votes;
-    }
+    @ManyToOne
+    private User user;
 
-    public void setVotes(List<Vote> votes) {
-        this.votes = votes;
-    }
-
-    public int getVoteCount() {
-        return voteCount;
-    }
-
-    public void setVoteCount(int voteCount) {
-        this.voteCount = voteCount;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public Link(String title, String url) {
-        this.title = title;
-        this.url = url;
-    }
 
     public String getDomainName() throws URISyntaxException {
         URI uri = new URI(this.url);
